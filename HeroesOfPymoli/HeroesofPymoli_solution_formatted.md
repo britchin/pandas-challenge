@@ -1,4 +1,3 @@
-#Heroes of Pymoli Solution
 ```python
 # Modules
 import pandas as pd
@@ -129,7 +128,7 @@ total_players
     576
 
 
-# Player Count
+
 
 ```python
 #Create a date frame for the total number of players
@@ -184,16 +183,22 @@ total_purchases
 total_revenue=(file_df["Price"].sum())
 ```
 
+
 ```python
 #put above data in a dataframe
 summary_df=pd.DataFrame({"Number of Unique Items": [total_uitems], "Average Price": [avg_price], "Number of Purchases":[total_purchases], "Total Revenue":[total_revenue]})
 ```
 
-# Purchase Analysis (Total)
+
 ```python
 #format the summary table using currency
 summary_df.style.format({'Average Price':"${:,.2f}",
                          'Total Revenue': "${:,.2f}"})
+
+#format the Perecentages
+summary_df['Average Price']= summary_df['Average Price'].astype(float).map("${:.2f}".format)
+summary_df['Total Revenue']= summary_df['Total Revenue'].astype(float).map("${:,.2f}".format)
+
 summary_df.head()
 ```
 
@@ -228,9 +233,9 @@ summary_df.head()
     <tr>
       <th>0</th>
       <td>179</td>
-      <td>3.05</td>
+      <td>$3.05</td>
       <td>780</td>
-      <td>2379.77</td>
+      <td>$2,379.77</td>
     </tr>
   </tbody>
 </table>
@@ -238,7 +243,7 @@ summary_df.head()
 
 
 
-# Gender Demographics
+
 ```python
 #Gender Demographics
 
@@ -262,10 +267,12 @@ gender_demo_df = pd.DataFrame({"Gender": ["Male", "Female", "Other / Non-Disclos
 #Remove the index numbers in the DF                                        
 gender_demo = gender_demo_df.set_index("Gender")
 
-#format the Perecentages
-gender_demo.style.format({"Percentage of Players": "{:.2f}%"})
 
-gender_demo.head()
+
+#format the columns
+gender_demo['Percentage of Players']= gender_demo['Percentage of Players'].astype(float).map("{:.2f}%".format)
+
+gender_demo
 
 ```
 
@@ -302,17 +309,17 @@ gender_demo.head()
   <tbody>
     <tr>
       <th>Male</th>
-      <td>84.027778</td>
+      <td>84.03%</td>
       <td>484</td>
     </tr>
     <tr>
       <th>Female</th>
-      <td>14.062500</td>
+      <td>14.06%</td>
       <td>81</td>
     </tr>
     <tr>
       <th>Other / Non-Disclosed</th>
-      <td>1.909722</td>
+      <td>1.91%</td>
       <td>11</td>
     </tr>
   </tbody>
@@ -321,7 +328,7 @@ gender_demo.head()
 
 
 
-# Purchase Analysis (Gender)
+
 ```python
 #Purchasing Analysis
 
@@ -357,9 +364,11 @@ purchase_analysis_df = pd.DataFrame ({"Gender":["Female", "Male", "Other/Non-Dis
 #set index
 purchase_analy = purchase_analysis_df.set_index("Gender")
 
-#format the columns
 purchase_analy.style.format({"Average Purchase Price": "${:.2f}", "Total Purchase Value": "${:,.2f}", "Average Total Purchase Per Person": "${:.2f}"})
 
+purchase_analy['Average Purchase Price']= purchase_analy['Average Purchase Price'].astype(float).map("${:.2f}".format)
+purchase_analy['Total Purchase Value']= purchase_analy['Total Purchase Value'].astype(float).map("${:,.2f}".format)
+purchase_analy['Average Total Purchase Per Person']= purchase_analy['Average Total Purchase Per Person'].astype(float).map("${:.2f}".format)
 purchase_analy
 ```
 
@@ -401,30 +410,30 @@ purchase_analy
     <tr>
       <th>Female</th>
       <td>113</td>
-      <td>3.203009</td>
-      <td>361.94</td>
-      <td>4.468395</td>
+      <td>$3.20</td>
+      <td>$361.94</td>
+      <td>$4.47</td>
     </tr>
     <tr>
       <th>Male</th>
       <td>652</td>
-      <td>3.017853</td>
-      <td>1967.64</td>
-      <td>4.065372</td>
+      <td>$3.02</td>
+      <td>$1,967.64</td>
+      <td>$4.07</td>
     </tr>
     <tr>
       <th>Other/Non-Disclosed</th>
       <td>15</td>
-      <td>3.346000</td>
-      <td>50.19</td>
-      <td>4.562727</td>
+      <td>$3.35</td>
+      <td>$50.19</td>
+      <td>$4.56</td>
     </tr>
   </tbody>
 </table>
 </div>
 
 
-# Age Demographics
+
 
 ```python
 #age demographics
@@ -539,7 +548,7 @@ age_demographics_df
 
 
 
-# Purchase Analysis (Age)
+
 ```python
 #Purchase Analysis by age 
 
@@ -659,7 +668,7 @@ Purchase_Analysis_Age
 
 
 
-# Top Spenders
+
 ```python
 #Top Spenders
 
@@ -755,7 +764,7 @@ sorted_Top_Spenders
 
 
 
-# Most Popular Items
+
 ```python
 #Most popular items
 
@@ -863,7 +872,7 @@ sorted_popular_items
 </div>
 
 
-# Most Profitable Items
+
 
 ```python
 #Most Profitable Items
