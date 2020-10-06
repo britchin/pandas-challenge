@@ -1,0 +1,12 @@
+Heroes of Pymoli Written Analysis
+
+Based on the data, men are playing this game much more than women, leading by  84% to 14% women. 
+
+Ironically, although men in total spend more money on purchases, women are more likely (inividually) to spend money within the game than men
+meaning women are likely more willing to spend money on the high ticket items vs buying lots of small ticket items (men).
+
+Finally, in the purchase analysis by age, purchase count and total purchase value is significantly higher amongst the 20-24 age group. 
+However, the avg total purchase per person in the same group is not the highest of the set. The highest in the set is in the 35-39 age group
+with only 41 total purchase count. This could suggest that those in the 35-39 age group are buying larger ticket items vs smaller ticket 
+items and could also suggest that those in the 20-24 age group purchase multiple smaller ticket items. 
+
