@@ -1,3 +1,4 @@
+#Heroes of Pymoli Solution
 ```python
 # Modules
 import pandas as pd
@@ -128,7 +129,7 @@ total_players
     576
 
 
-
+# Player Count
 
 ```python
 #Create a date frame for the total number of players
@@ -183,13 +184,12 @@ total_purchases
 total_revenue=(file_df["Price"].sum())
 ```
 
-
 ```python
 #put above data in a dataframe
 summary_df=pd.DataFrame({"Number of Unique Items": [total_uitems], "Average Price": [avg_price], "Number of Purchases":[total_purchases], "Total Revenue":[total_revenue]})
 ```
 
-
+# Purchase Analysis (Total)
 ```python
 #format the summary table using currency
 summary_df.style.format({'Average Price':"${:,.2f}",
@@ -238,7 +238,7 @@ summary_df.head()
 
 
 
-
+# Gender Demographics
 ```python
 #Gender Demographics
 
@@ -321,7 +321,7 @@ gender_demo.head()
 
 
 
-
+# Purchase Analysis (Gender)
 ```python
 #Purchasing Analysis
 
@@ -424,7 +424,7 @@ purchase_analy
 </div>
 
 
-
+# Age Demographics
 
 ```python
 #age demographics
@@ -539,7 +539,7 @@ age_demographics_df
 
 
 
-
+# Purchase Analysis (Age)
 ```python
 #Purchase Analysis by age 
 
@@ -659,7 +659,7 @@ Purchase_Analysis_Age
 
 
 
-
+# Top Spenders
 ```python
 #Top Spenders
 
@@ -755,7 +755,7 @@ sorted_Top_Spenders
 
 
 
-
+# Most Popular Items
 ```python
 #Most popular items
 
@@ -863,7 +863,7 @@ sorted_popular_items
 </div>
 
 
-
+# Most Profitable Items
 
 ```python
 #Most Profitable Items
