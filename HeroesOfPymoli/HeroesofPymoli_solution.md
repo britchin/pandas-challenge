@@ -181,21 +181,20 @@ avg_price
 total_purchases=(file_df["Purchase ID"].count())
 total_purchases
 total_revenue=(file_df["Price"].sum())
-total_revenue
 ```
-
-
-
-
-    2379.77
-
-
 
 
 ```python
 #put above data in a dataframe
 summary_df=pd.DataFrame({"Number of Unique Items": [total_uitems], "Average Price": [avg_price], "Number of Purchases":[total_purchases], "Total Revenue":[total_revenue]})
-summary_df
+```
+
+
+```python
+#format the summary table using currency
+summary_df.style.format({'Average Price':"${:,.2f}",
+                         'Total Revenue': "${:,.2f}"})
+summary_df.head()
 ```
 
 
@@ -241,29 +240,6 @@ summary_df
 
 
 ```python
-#format the summary table using currency
-summary_df.style.format({'Average Price':"${:,.2f}",
-                         'Total Revenue': "${:,.2f}"})
-```
-
-
-
-
-<style  type="text/css" >
-</style><table id="T_769374cc_0751_11eb_a87b_1cbfc027c7d4" ><thead>    <tr>        <th class="blank level0" ></th>        <th class="col_heading level0 col0" >Number of Unique Items</th>        <th class="col_heading level0 col1" >Average Price</th>        <th class="col_heading level0 col2" >Number of Purchases</th>        <th class="col_heading level0 col3" >Total Revenue</th>    </tr></thead><tbody>
-                <tr>
-                        <th id="T_769374cc_0751_11eb_a87b_1cbfc027c7d4level0_row0" class="row_heading level0 row0" >0</th>
-                        <td id="T_769374cc_0751_11eb_a87b_1cbfc027c7d4row0_col0" class="data row0 col0" >179</td>
-                        <td id="T_769374cc_0751_11eb_a87b_1cbfc027c7d4row0_col1" class="data row0 col1" >$3.05</td>
-                        <td id="T_769374cc_0751_11eb_a87b_1cbfc027c7d4row0_col2" class="data row0 col2" >780</td>
-                        <td id="T_769374cc_0751_11eb_a87b_1cbfc027c7d4row0_col3" class="data row0 col3" >$2,379.77</td>
-            </tr>
-    </tbody></table>
-
-
-
-
-```python
 #Gender Demographics
 
 #Total count without repeating SN's
@@ -289,29 +265,59 @@ gender_demo = gender_demo_df.set_index("Gender")
 #format the Perecentages
 gender_demo.style.format({"Percentage of Players": "{:.2f}%"})
 
+gender_demo.head()
+
 ```
 
 
 
 
-<style  type="text/css" >
-</style><table id="T_25fc746e_0752_11eb_b83a_1cbfc027c7d4" ><thead>    <tr>        <th class="blank level0" ></th>        <th class="col_heading level0 col0" >Percentage of Players</th>        <th class="col_heading level0 col1" >Total Count</th>    </tr>    <tr>        <th class="index_name level0" >Gender</th>        <th class="blank" ></th>        <th class="blank" ></th>    </tr></thead><tbody>
-                <tr>
-                        <th id="T_25fc746e_0752_11eb_b83a_1cbfc027c7d4level0_row0" class="row_heading level0 row0" >Male</th>
-                        <td id="T_25fc746e_0752_11eb_b83a_1cbfc027c7d4row0_col0" class="data row0 col0" >84.03%</td>
-                        <td id="T_25fc746e_0752_11eb_b83a_1cbfc027c7d4row0_col1" class="data row0 col1" >484</td>
-            </tr>
-            <tr>
-                        <th id="T_25fc746e_0752_11eb_b83a_1cbfc027c7d4level0_row1" class="row_heading level0 row1" >Female</th>
-                        <td id="T_25fc746e_0752_11eb_b83a_1cbfc027c7d4row1_col0" class="data row1 col0" >14.06%</td>
-                        <td id="T_25fc746e_0752_11eb_b83a_1cbfc027c7d4row1_col1" class="data row1 col1" >81</td>
-            </tr>
-            <tr>
-                        <th id="T_25fc746e_0752_11eb_b83a_1cbfc027c7d4level0_row2" class="row_heading level0 row2" >Other / Non-Disclosed</th>
-                        <td id="T_25fc746e_0752_11eb_b83a_1cbfc027c7d4row2_col0" class="data row2 col0" >1.91%</td>
-                        <td id="T_25fc746e_0752_11eb_b83a_1cbfc027c7d4row2_col1" class="data row2 col1" >11</td>
-            </tr>
-    </tbody></table>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Percentage of Players</th>
+      <th>Total Count</th>
+    </tr>
+    <tr>
+      <th>Gender</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Male</th>
+      <td>84.027778</td>
+      <td>484</td>
+    </tr>
+    <tr>
+      <th>Female</th>
+      <td>14.062500</td>
+      <td>81</td>
+    </tr>
+    <tr>
+      <th>Other / Non-Disclosed</th>
+      <td>1.909722</td>
+      <td>11</td>
+    </tr>
+  </tbody>
+</table>
+</div>
 
 
 
@@ -353,35 +359,69 @@ purchase_analy = purchase_analysis_df.set_index("Gender")
 
 #format the columns
 purchase_analy.style.format({"Average Purchase Price": "${:.2f}", "Total Purchase Value": "${:,.2f}", "Average Total Purchase Per Person": "${:.2f}"})
+
+purchase_analy
 ```
 
 
 
 
-<style  type="text/css" >
-</style><table id="T_7cc27eb0_0752_11eb_9468_1cbfc027c7d4" ><thead>    <tr>        <th class="blank level0" ></th>        <th class="col_heading level0 col0" >Purchase Count</th>        <th class="col_heading level0 col1" >Average Purchase Price</th>        <th class="col_heading level0 col2" >Total Purchase Value</th>        <th class="col_heading level0 col3" >Average Total Purchase Per Person</th>    </tr>    <tr>        <th class="index_name level0" >Gender</th>        <th class="blank" ></th>        <th class="blank" ></th>        <th class="blank" ></th>        <th class="blank" ></th>    </tr></thead><tbody>
-                <tr>
-                        <th id="T_7cc27eb0_0752_11eb_9468_1cbfc027c7d4level0_row0" class="row_heading level0 row0" >Female</th>
-                        <td id="T_7cc27eb0_0752_11eb_9468_1cbfc027c7d4row0_col0" class="data row0 col0" >113</td>
-                        <td id="T_7cc27eb0_0752_11eb_9468_1cbfc027c7d4row0_col1" class="data row0 col1" >$3.20</td>
-                        <td id="T_7cc27eb0_0752_11eb_9468_1cbfc027c7d4row0_col2" class="data row0 col2" >$361.94</td>
-                        <td id="T_7cc27eb0_0752_11eb_9468_1cbfc027c7d4row0_col3" class="data row0 col3" >$4.47</td>
-            </tr>
-            <tr>
-                        <th id="T_7cc27eb0_0752_11eb_9468_1cbfc027c7d4level0_row1" class="row_heading level0 row1" >Male</th>
-                        <td id="T_7cc27eb0_0752_11eb_9468_1cbfc027c7d4row1_col0" class="data row1 col0" >652</td>
-                        <td id="T_7cc27eb0_0752_11eb_9468_1cbfc027c7d4row1_col1" class="data row1 col1" >$3.02</td>
-                        <td id="T_7cc27eb0_0752_11eb_9468_1cbfc027c7d4row1_col2" class="data row1 col2" >$1,967.64</td>
-                        <td id="T_7cc27eb0_0752_11eb_9468_1cbfc027c7d4row1_col3" class="data row1 col3" >$4.07</td>
-            </tr>
-            <tr>
-                        <th id="T_7cc27eb0_0752_11eb_9468_1cbfc027c7d4level0_row2" class="row_heading level0 row2" >Other/Non-Disclosed</th>
-                        <td id="T_7cc27eb0_0752_11eb_9468_1cbfc027c7d4row2_col0" class="data row2 col0" >15</td>
-                        <td id="T_7cc27eb0_0752_11eb_9468_1cbfc027c7d4row2_col1" class="data row2 col1" >$3.35</td>
-                        <td id="T_7cc27eb0_0752_11eb_9468_1cbfc027c7d4row2_col2" class="data row2 col2" >$50.19</td>
-                        <td id="T_7cc27eb0_0752_11eb_9468_1cbfc027c7d4row2_col3" class="data row2 col3" >$4.56</td>
-            </tr>
-    </tbody></table>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Purchase Count</th>
+      <th>Average Purchase Price</th>
+      <th>Total Purchase Value</th>
+      <th>Average Total Purchase Per Person</th>
+    </tr>
+    <tr>
+      <th>Gender</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Female</th>
+      <td>113</td>
+      <td>3.203009</td>
+      <td>361.94</td>
+      <td>4.468395</td>
+    </tr>
+    <tr>
+      <th>Male</th>
+      <td>652</td>
+      <td>3.017853</td>
+      <td>1967.64</td>
+      <td>4.065372</td>
+    </tr>
+    <tr>
+      <th>Other/Non-Disclosed</th>
+      <td>15</td>
+      <td>3.346000</td>
+      <td>50.19</td>
+      <td>4.562727</td>
+    </tr>
+  </tbody>
+</table>
+</div>
 
 
 
@@ -419,7 +459,7 @@ age_demographics_df = pd.DataFrame ({"Total Count": grouped_count,
                                     "Percentage of Players": age_percentage})
 age_demographics_df['Percentage of Players']= age_demographics_df['Percentage of Players'].astype(float).map("{:.2f}%".format)
 
-
+age_demographics_df
 ```
 
 
